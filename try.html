@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon GO Web Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .top-bar {
+            position: fixed;
+            background-color: #60acbc;
+            text-align: center;
+            padding: 13px;
+            font-size: 17.5px;
+            color: white;
+            width: 100%;
+            z-index: 1000;
+        }
+        .upper {
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            top: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding-left: 75px;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #60acbc;
+            transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .logo a:hover {
+            color: #0074f0; 
+        }
+
+        .nav-links {
+            padding-right: 120px;
+            margin: 11px;
+        }
+
+        .nav-links button {
+            margin-left: 3px;
+        }
+
+        .code {
+            background: none;
+            border: none;
+            font-size: 18px;
+            padding: 12px 22px;
+            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 25px; 
+            color: #032d59;
+            
+        }
+
+        .code:hover {
+            background: rgba(96, 172, 188, 0.2); 
+            color: #0074f0; 
+            cursor: pointer;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sign-in {
+            font-size: 18px;
+            background: linear-gradient(45deg, #57ecea, #60acbc);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-right: -5px;
+            transition: background 0.4s ease-in-out;
+            background-size: 200% 100%;
+        }
+
+        .sign-in:hover {
+            background-position: right;
+        }
+
+        .featured-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .item-box {
+            background: #abdbe3;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            width: 25%;
+            text-align: center;
+            color: white;
+        }
+
+        .item-box h2 {
+            font-size: 25px;
+        }
+        .item-box:hover {
+            transform: translateY(-5px);
+        }
+        .tag {
+            background: #ff4081;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .price {
+            background: #5cb85c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .categories a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .categories .active {
+            text-decoration: underline;
+        }
+
+        main {
+            padding-top: 150px; /* Adjust based on the height of .top-bar and .upper */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">15% discount for your first Web Store purchase on any item $9.99 or more!</div>
+        <nav class="upper">
+            <div class="logo">
+                <img src="your-logo-url-here" alt="LRT2 Logo"> 
+                <a href="#">Web Store</a>
+            </div>
+            <div class="nav-links">
+                <button class="code" href="#">Code Redemption</button>
+                <button class="code" href="#">Event Ticketing</button>
+                <button class="sign-in" href="#">Sign In</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="featured-items">
+            <div class="item-box">
+                <span class="tag">ONE TIME ONLY</span>
+                <h2>Fuzzy Buddy Research Day Ultra Ticket Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-rel-assets%2Fpgo%2Fsku_assets%2Fbundle.general4.medium.1.png&w=256&q=75" alt="Gift Box" style="width: 100px;">
+                <p>Can only be purchased 1 time.</p>
+                <button class="price">₱59.00</button>
+            </div>
+            <div class="item-box">
+                <span class="tag">LIMITED TIME</span>
+                <h2>Bug Out Ultra Ticket Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-rel-assets%2Fpgo%2Fsku_assets%2Fbundle.general1.large.1.png&w=256&q=75" alt="Raid Pass" style="width: 100px;">
+                <p>Available for a limited time.</p>
+                <button class="price">₱99.00</button>
+            </div>
+            <div class="item-box">
+                <span class="tag">HOT DEAL</span>
+                <h2>GO Rocket Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-rel-assets%2Fpgo%2Fsku_assets%2Fbundle.general1.rocket.1.png&w=256&q=75" alt="PokéCoins" style="width: 100px;">
+                <p>Get extra coins on purchase!</p>
+                <button class="price">₱149.00</button>
+            </div>
+            <div class="item-box">
+                <span class="tag">EXCLUSIVE</span>
+                <h2>Ultra Raid Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-stg-assets%2Fpgo%2Fsku_assets%2Fbundle.general.remotebox.small.1.png&w=256&q=75" alt="Trainer Box" style="width: 100px;">
+                <p>Special bundle for trainers.</p>
+                <button class="price">₱199.00</button>
+            </div>
+            <div class="item-box">
+                <span class="tag">EXCLUSIVE</span>
+                <h2>Ultra Raid Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-stg-assets%2Fpgo%2Fsku_assets%2Fbundle.general.remotebox.small.1.png&w=256&q=75" alt="Trainer Box" style="width: 100px;">
+                <p>Special bundle for trainers.</p>
+                <button class="price">₱199.00</button>
+            </div>
+            <div class="item-box">
+                <span class="tag">EXCLUSIVE</span>
+                <h2>Ultra Raid Box</h2>
+                <img src="https://store.pokemongolive.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fplatform-webstore-stg-assets%2Fpgo%2Fsku_assets%2Fbundle.general.remotebox.small.1.png&w=256&q=75" alt="Trainer Box" style="width: 100px;">
+                <p>Special bundle for trainers.</p>
+                <button class="price">₱199.00</button>
+            </div>
+        </section>
+        <nav class="categories">
+            <a href="#" class="active">Featured</a>
+            <a href="#">Item Boxes</a>
+            <a href="#">PokéCoins</a>
+            <a href="#">Daily Bundles</a>
+        </nav>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
