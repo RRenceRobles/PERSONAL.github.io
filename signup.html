@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon LRT2 Web Store</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: Lato, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, white 30%, #202c5c 100%);
+        min-height: 100vh;
+      }
+
+      .hidden {
+        opacity: 0;
+        transform: translateY(80px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .hidden2 {
+        opacity: 0;
+        transform: translateX(80px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .show2 {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /*HEADER*/
+      .top-bar {
+        position: fixed;
+        background: linear-gradient(45deg, #5e7ab6, #202c5c);
+        text-align: center;
+        padding: 13px;
+        font-size: 17.5px;
+        color: white;
+        width: 100%;
+        z-index: 1000;
+      }
+      .upper {
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+        top: 45px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 100px; 
+        overflow: hidden; 
+      }
+      .logo {
+        font-size: 26px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding-left: 75px;
+      }
+      .logo img {
+        height: 150px;
+        width: auto;
+      }
+
+      .logo a {
+        text-decoration: none;
+        color: #4d64c2;
+        transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+
+      .logo a:hover {
+        color: #0074f0;
+      }
+
+      .item-title {
+        text-align: left;
+        margin-top: 50px;
+        margin-left: 195px;
+      }
+
+      .item-title h2 {
+        color: #1a294a;
+        font-weight: bold;
+      }
+
+      /*MAIN*/
+      main {
+        padding-top: 0px;
+      }
+
+      .signin-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        padding: 0;
+        padding-top: 150px;
+      }
+
+      .signin-box {
+        background: white; 
+        border-radius: 20px;
+        padding: 40px; 
+        width: 500px; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+      }
+
+      .signin-box h2 {
+        font-size: 24px;
+        font-weight: 900;
+        color: #1a294a;
+        margin-bottom: 20px;
+      }
+
+      .input-group {
+        text-align: left;
+        margin-bottom: 15px;
+      }
+
+      .input-group label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #1a294a;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .remember-me input {
+        margin-right: 5px;
+      }
+
+      .signin-btn {
+        background: white; 
+        color: black;
+        border-radius: 5px;
+        border: 1px solid #1a294a; 
+        transition: background 0.3s ease-in-out, transform 0.2s; 
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .signin-btn:hover {
+        transform: scale(1.03); 
+        background: #1a294a;
+        color: white;
+      }
+
+      .signup-link {
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      .signup-link a {
+        color: #0074f0;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      /*FOOTER*/
+      footer {
+        background: transparent;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 0px;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 20px;
+        color: white;
+      }
+
+      .footer-educ {
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .footer-bottom {
+        display: flex;
+        padding: 20px 0px; 
+        margin-top: 20px; 
+        justify-content: center; 
+        gap: 20px;
+      }
+
+      .footer-bottom a {
+        text-decoration: none;
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      .footer-bottom a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-bottomtext-container {
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        gap: 10px; 
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+      }
+
+      .footer-bottomtext {
+        max-width: 500px;
+        text-align: left;
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .footer-bottomtext-container img {
+        width: 100px; 
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!--HEADER-->
+    <header>
+      <div class="top-bar">Welcome to Pokemon LRT 2!</div>
+      <nav class="upper">
+        <div class="logo">
+          <a href="#">
+            <img src="LRT2 LOGO.png" alt="LRT2 Logo" />
+          </a>
+          <a href="#">Web Store</a>
+        </div>
+      </nav>
+    </header>
+
+    <!--MAIN-->
+    <main>
+      <section class="signin-container">
+        <div class="signin-box">
+          <main id="form-container">
+            <div id="signin-form" class="form-content">
+              <h2>Sign In</h2>
+              <form>
+                <div class="input-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="remember-me">
+                  <input type="checkbox" id="remember" name="remember" />
+                  <label for="remember">Remember Me</label>
+                </div>
+
+                <p
+                  id="error-message"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                  "
+                ></p>
+
+                <button type="submit" class="signin-btn">Sign In</button>
+
+                <p style="margin-top: 15px; text-align: left">
+                  <a
+                    href="#"
+                    id="toggle-register"
+                    style="
+                      color: black;
+                      cursor: pointer;
+                      text-decoration: underline;
+                      font-size: 12px;
+                    "
+                    >Don't have an account?</a
+                  >
+                </p>
+              </form>
+            </div>
+
+            <div id="register-form" class="form-content" style="display: none">
+              <h2>Create an Account</h2>
+              <form>
+                <div class="input-group">
+                  <label for="name">Username / In-Game Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your Username"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="register-email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="register-password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="confirm-password">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+                <p
+                  id="password-error"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                  "
+                ></p>
+
+                <button type="submit" class="signin-btn">Register</button>
+
+                <p style="margin-top: 15px; text-align: left">
+                  <a
+                    href="#"
+                    id="toggle-signin"
+                    style="
+                      color: black;
+                      cursor: pointer;
+                      text-decoration: underline;
+                      font-size: 12px;
+                    "
+                    >Back to Sign In</a
+                  >
+                </p>
+              </form>
+            </div>
+
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                document
+                  .getElementById("signin-form")
+                  .addEventListener("submit", function (event) {
+                    event.preventDefault(); 
+
+                    var email = document.getElementById("email").value;
+                    var password = document.getElementById("password").value;
+                    var errorMessage = document.getElementById("error-message");
+                    var users = JSON.parse(localStorage.getItem("users")) || [];
+
+                    var userExists = users.find(
+                      (user) =>
+                        user.email === email && user.password === password
+                    );
+
+                    if (userExists) {
+                      localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify(userExists)
+                      );
+
+                      window.location.href = "after signin.html";
+                    } else {
+                      errorMessage.textContent = "Invalid Username or Password";
+                    }
+                  });
+                document
+                  .getElementById("register-form")
+                  .addEventListener("submit", function (event) {
+                    event.preventDefault(); 
+
+                    var name = document.getElementById("name").value;
+                    var email = document.getElementById("register-email").value;
+                    var password =
+                      document.getElementById("register-password").value;
+                    var confirmPassword =
+                      document.getElementById("confirm-password").value;
+                    var passwordError =
+                      document.getElementById("password-error");
+
+                    var uppercaseRegex = /[A-Z]/;
+                    var lowercaseRegex = /[a-z]/;
+                    var numberRegex = /[0-9]/;
+                    var symbolRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+                    if (!uppercaseRegex.test(password)) {
+                      passwordError.textContent =
+                        "Password must contain at least one uppercase letter!";
+                      return;
+                    } else if (!lowercaseRegex.test(password)) {
+                      passwordError.textContent =
+                        "Password must contain at least one lowercase letter!";
+                      return;
+                    } else if (!numberRegex.test(password)) {
+                      passwordError.textContent =
+                        "Password must contain at least one number!";
+                      return;
+                    } else if (!symbolRegex.test(password)) {
+                      passwordError.textContent =
+                        "Password must contain at least one symbol!";
+                      return;
+                    }
+                    
+                    if (password !== confirmPassword) {
+                      passwordError.textContent = "Passwords do not match!";
+                      return;
+                    } else {
+                      passwordError.textContent = ""; 
+                    }
+                    var userId = generateRandomId();
+
+                    var users = JSON.parse(localStorage.getItem("users")) || [];
+
+                    var emailExists = users.some(
+                      (user) => user.email === email
+                    );
+                    if (emailExists) {
+                      alert(
+                        "Email already registered! Please use a different email."
+                      );
+                      return;
+                    }
+
+                    users.push({
+                      name: name,
+                      email: email,
+                      password: password,
+                      userId: userId,
+                    });
+                    localStorage.setItem("users", JSON.stringify(users));
+
+                    alert(
+                      "Registration successful! Your User ID is: " + userId
+                    );
+
+                    document.getElementById("signin-form").style.display =
+                      "block";
+                    document.getElementById("register-form").style.display =
+                      "none";
+                  });
+                function generateRandomId() {
+                  var part1 = Math.floor(1000 + Math.random() * 9000); 
+                  var part2 = Math.floor(1000 + Math.random() * 9000); 
+                  var part3 = Math.floor(1000 + Math.random() * 9000); 
+
+                  return part1 + " " + part2 + " " + part3;
+                }
+
+                document
+                  .getElementById("toggle-register")
+                  .addEventListener("click", function () {
+                    document.getElementById("signin-form").style.display =
+                      "none";
+                    document.getElementById("register-form").style.display =
+                      "block";
+                  });
+
+                document
+                  .getElementById("toggle-signin")
+                  .addEventListener("click", function () {
+                    document.getElementById("signin-form").style.display =
+                      "block";
+                    document.getElementById("register-form").style.display =
+                      "none";
+                  });
+              });
+              
+            </script>
+          </main>
+        </div>
+      </section>
+    </main>
+    <!--FOOTER-->
+    <footer>
+      <div class="footer-bottomtext-container">
+        <div class="footer-bottomtext">
+          <p>
+            ©2023 Niantic, Inc. ©2023 Pokémon. ©1995-2023 Nintendo / Creatures
+            Inc. / GAME FREAK inc. Pokémon and Pokémon character names are
+            trademarks of Nintendo. Apple and the Apple logo are trademarks of
+            Apple Inc., registered in the U.S. and other countries. App Store is
+            a service mark of Apple Inc. Android, Google Play and the Google
+            Play logo are trademarks of Google LLC. During gameplay, please be
+            aware of your surroundings and play safely.
+          </p>
+        </div>
+        <a href="https://nianticlabs.com/?hl=en" target="_blank">
+          <img src="Niantic Logo 256x256.png" alt="Niantic Logo" />
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <a href="https://nianticlabs.com/terms" target="_blank"
+          >Terms of Service</a
+        >
+        <a href="https://nianticlabs.com/privacy" target="_blank"
+          >Privacy Policy</a
+        >
+        <a href="https://nianticlabs.com/ip-policy" target="_blank"
+          >Copyright Policy</a
+        >
+        <a href="https://nianticlabs.com/guidelines" target="_blank"
+          >Player Guidelines</a
+        >
+      </div>
+
+      <div class="footer-educ">
+        <p>
+          "For educational purposes only and no copyright infringement is
+          intended."
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
